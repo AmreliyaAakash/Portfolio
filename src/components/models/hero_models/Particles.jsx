@@ -1,11 +1,11 @@
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import React from "react";
 
 const Particles = ({ count = 200 }) => {
   const mesh = useRef();
 
-  const particles = useMemo(() => {
+  const [particles] = useState(() => {
     const temp = [];
     for (let i = 0; i < count; i++) {
       temp.push({
@@ -18,7 +18,7 @@ const Particles = ({ count = 200 }) => {
       });
     }
     return temp;
-  }, [count]);
+  });
 
   useFrame(() => {
     const positions = mesh.current.geometry.attributes.position.array;

@@ -6,7 +6,7 @@ import * as THREE from "three";
 import { loadCachedModel } from "../../../utils/modelCache.js";
 
 // Inner component that actually renders the model
-function RoomContent({ url, ismobile, ...props }) {
+function RoomContent({ url, ...props }) {
   const { nodes, materials } = useGLTF(url);
   const screensRef = useRef();
   const matcapTexture = useTexture("/images/textures/mat1.png");
@@ -178,7 +178,7 @@ function RoomContent({ url, ismobile, ...props }) {
 }
 
 // Main Wrapper that handles caching
-export function Room({ ismobile, ...props }) {
+export function Room({ ...props }) {
   const [modelUrl, setModelUrl] = useState(null);
 
   useEffect(() => {
@@ -187,5 +187,5 @@ export function Room({ ismobile, ...props }) {
 
   if (!modelUrl) return null; // Or a loading spinner
 
-  return <RoomContent url={modelUrl} ismobile={ismobile} {...props} />;
+  return <RoomContent url={modelUrl} {...props} />;
 }
