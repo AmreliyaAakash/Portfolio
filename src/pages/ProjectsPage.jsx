@@ -82,15 +82,7 @@ const ProjectsPage = () => {
           </div>
         </div>
 
-        {/* Mobile See More Button */}
-        <div className="mt-10 flex justify-center md:hidden px-5">
-          <a 
-            href="#projects" 
-            className="w-full py-4 bg-white text-black rounded-xl font-bold text-center shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:scale-[1.02] transition-transform"
-          >
-            See More Projects
-          </a>
-        </div>
+        
       </div>
     </div>
   );
