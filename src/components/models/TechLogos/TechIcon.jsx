@@ -9,7 +9,7 @@ const TechIcon = ({ model }) => {
         if (model.name === "Interactive Developer") {
             scene.scene.traverse((child) => {
                 if (child.isMesh) {
-                    console.log("Mesh:", child.name);
+                    
 
 
                     child.material = new THREE.MeshStandardMaterial({

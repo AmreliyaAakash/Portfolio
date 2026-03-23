@@ -47,38 +47,36 @@ const AppShowcase = () => {
     <div id="work" ref={sectionRef} className="app-showcase">
       <div className="w-full">
         <div className="showcaselayout">
-          <div ref={rydeRef} className="first-project-wrapper">
-            <div className="image-wrapper">
-              <img src="/images/project1.png" alt="Ryde App Interface" />
-            </div>
+          <div ref={rydeRef} className="first-project-wrapper group">
+            <a href="https://aakash27.netlify.app/" target="_blank" rel="noopener noreferrer" className="block image-wrapper bg-gradient-to-br from-[#F5F8FF] to-[#D5E4FF] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.5)]">
+              <img src="/images/project1.png" alt="Admin Panel Interface" />
+            </a>
             <div className="text-content">
               <h2>
-                On-Demand Rides Made Simple with a Powerful, User-Friendly App
-                called Ryde
+                All-in-One Ecommerce Dashboard to Monitor Sales, Orders, and Performance
               </h2>
               <p className="text-white-50 md:text-xl">
-                An app built with React Native, Expo, & TailwindCSS for a fast,
-                user-friendly experience.
+                Built with modern web technologies to deliver fast, responsive, and visually engaging business insights.
               </p>
             </div>
           </div>
 
           <div className="project-list-wrapper overflow-hidden">
-            <div className="project" ref={libraryRef}>
-              <div className="image-wrapper bg-[#FFEFDB]">
+            <div className="project group" ref={libraryRef}>
+              <a href="https://github.com/AmreliyaAakash/Movie-Project" target="_blank" rel="noopener noreferrer" className="block image-wrapper bg-gradient-to-br from-[#FFF8F0] to-[#FFE0B2] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.5)] ">
                 <img
                   src="/images/project2.png"
                   alt="Library Management Platform"
                 />
-              </div>
-              <h2>The Library Management Platform</h2>
+              </a>
+              <h2>The Movie Booking Platform</h2>
             </div>
 
-            <div className="project" ref={ycDirectoryRef}>
-              <div className="image-wrapper bg-[#FFE7EB]">
+            <div className="project group" ref={ycDirectoryRef}>
+              <a href="https://amreliyaaakash.github.io/html-css-live-project/" target="_blank" rel="noopener noreferrer" className="block image-wrapper bg-gradient-to-br from-[#FFF5F7] to-[#FFC2CD] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.5)]">
                 <img src="/images/project3.png" alt="YC Directory App" />
-              </div>
-              <h2>YC Directory - A Startup Showcase App</h2>
+              </a>
+              <h2>Modern Restaurant Booking App</h2>
             </div>
           </div>
         </div>
