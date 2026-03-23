@@ -74,11 +74,21 @@ const AppShowcase = () => {
 
             <div className="project group" ref={ycDirectoryRef}>
               <a href="https://amreliyaaakash.github.io/html-css-live-project/" target="_blank" rel="noopener noreferrer" className="block image-wrapper bg-gradient-to-br from-[#FFF5F7] to-[#FFC2CD] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.5)]">
-                <img src="/images/project3.png" alt="YC Directory App" />
+                <img src="/images/project3.png" alt="YC Directory App" className="rounded-2xl shadow-[0_0_30px_rgba(0,0,0,0.15)]" />
               </a>
               <h2>Modern Restaurant Booking App</h2>
             </div>
           </div>
+        </div>
+
+        {/* Mobile See More Button */}
+        <div className="mt-10 flex justify-center md:hidden px-5">
+          <a 
+            href="#projects" 
+            className="w-full py-4 bg-white text-black rounded-xl font-bold text-center shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:scale-[1.02] transition-transform"
+          >
+            See More Projects
+          </a>
         </div>
       </div>
     </div>
