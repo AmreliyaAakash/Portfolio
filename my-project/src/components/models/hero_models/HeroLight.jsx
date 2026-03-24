@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import React from "react";  
+import React from "react";
 const HeroLights = () => (
   <>
     {/* lamp's light */}
@@ -26,12 +26,14 @@ const HeroLights = () => (
       intensity={60}
       color="#9d4edd"
     />
-    {/* area light for soft moody fill */}
-    <primitive
-      object={new THREE.RectAreaLight("#a259ff", 8, 3, 2)}
+    {/* Performance Optimized Light (Replaces heavy RectAreaLight) */}
+    <spotLight
       position={[1, 3, 4]}
       rotation={[-Math.PI / 4, Math.PI / 4, 0]}
       intensity={15}
+      color="#a259ff"
+      angle={0.6}
+      penumbra={0.5}
     />
     {/* subtle point light for atmospheric tone */}
     <pointLight position={[0, 1, 0]} intensity={10} color="#7209b7" />

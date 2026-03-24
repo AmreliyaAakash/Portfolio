@@ -165,10 +165,22 @@ section {
       @apply h-full flex flex-col justify-between xl:w-[60%];
 
       .image-wrapper {
-        @apply xl:h-[70vh] md:h-[50vh] h-96 relative;
+        @apply xl:h-[70vh] md:h-[50vh] h-96 relative rounded-3xl p-5 md:p-10 flex justify-center items-center overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] cursor-pointer;
+        box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.1);
+
+        &:hover {
+          @apply -translate-y-2;
+          box-shadow: 0 25px 40px -10px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
 
         img {
-          @apply w-full h-full object-cover rounded-xl absolute inset-0;
+          @apply w-full h-full object-contain rounded-2xl relative z-10 transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)];
+          filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.15));
+        }
+
+        &:hover img {
+          @apply scale-[1.03] -translate-y-1;
+          filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.35));
         }
       }
 
@@ -189,11 +201,23 @@ section {
       @apply flex md:flex-row flex-col xl:flex-col gap-10 xl:w-[40%];
 
       .image-wrapper {
-        @apply xl:h-[37vh] md:h-52 lg:h-72 h-64 relative rounded-xl xl:px-5 2xl:px-12 py-0;
+        @apply xl:h-[37vh] md:h-52 lg:h-72 h-64 relative rounded-3xl xl:px-5 2xl:px-12 py-0 flex justify-center items-center overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] cursor-pointer;
+        box-shadow: 0 4px 15px -5px rgba(0, 0, 0, 0.1);
+
+        &:hover {
+          @apply -translate-y-2;
+          box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
       }
 
       img {
-        @apply w-full h-full object-contain rounded-xl;
+        @apply w-full h-full object-contain rounded-2xl relative z-10 transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)];
+        filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.15));
+      }
+
+      .project:hover img {
+        @apply scale-[1.05] -translate-y-1;
+        filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.3));
       }
 
       h2 {
@@ -248,6 +272,36 @@ section {
 
   .timeline-logo {
     @apply md:size-20 size-10 flex-none rounded-full flex justify-center items-center md:-translate-y-7 border border-black-50 bg-black-100;
+  }
+
+  .timeline-logo-3d {
+    @apply md:size-20 size-10 flex-none rounded-full flex justify-center items-center md:-translate-y-7 border border-[#333] bg-gradient-to-br from-[#2a2a2a] to-[#0a0a0a] shadow-[inset_0px_2px_4px_rgba(255,255,255,0.1),_0px_10px_20px_rgba(0,0,0,0.8)] relative cursor-pointer;
+    transform-style: preserve-3d;
+    perspective: 500px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .timeline-logo-3d:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: inset 0px 2px 4px rgba(255,255,255,0.2), 0px 15px 25px rgba(0,0,0,0.9);
+  }
+
+  .timeline-logo-3d::after {
+    content: '';
+    @apply absolute rounded-full inset-0 pointer-events-none;
+    box-shadow: inset 0px -2px 5px rgba(0,0,0,0.5);
+  }
+
+  .timeline-logo-3d img {
+    filter: drop-shadow(4px 6px 4px rgba(0,0,0,0.7));
+    transform: translateZ(20px) rotateY(-10deg) rotateX(5deg);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease;
+    will-change: transform;
+  }
+
+  .timeline-logo-3d:hover img {
+    transform: translateZ(40px) rotateY(0deg) rotateX(0deg) scale(1.15);
+    filter: drop-shadow(0px 10px 8px rgba(0,0,0,0.8));
   }
 
   .exp-card-wrapper {
@@ -367,12 +421,11 @@ section {
 .gradient-line {
   width: 2px;
   background: linear-gradient(
-    0deg,
-    rgba(69, 222, 196, 0) 0%,
-    #62e0ff 25%,
-    #52aeff 37.51%,
-    #fd5c79 62.83%,
-    #6d45ce 92.91%
+    180deg,
+    #61DAFB 10%,
+    #539E43 50%,
+    #00ED64 80%,
+    rgba(0, 237, 100, 0) 100%
   );
 }
 
@@ -469,4 +522,89 @@ section {
 
 .card:hover::before {
   opacity: 1;
+}
+/* TechStack.css */
+
+/* 1. Base Card Setup */
+.tech-card {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    /* This background color masks the center. Change it to match your site's dark background */
+    background-color: #0f172a; 
+    z-index: 1;
+}
+
+/* Lift the card slightly on hover */
+.tech-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px -10px rgba(139, 92, 246, 0.4); /* Subtle purple shadow */
+}
+
+/* 2. The Animated "Magic" Line (The Gradient) */
+.tech-card::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    /* The gradient colors for the moving line */
+    background: conic-gradient(
+        transparent, 
+        transparent, 
+        transparent, 
+        #3b82f6, /* Bright Blue */
+        #8b5cf6, /* Bright Purple */
+        transparent
+    );
+    transition: opacity 0.3s ease;
+    opacity: 0; /* Hidden until hover */
+    animation: spin-line 3s linear infinite;
+    z-index: -2;
+}
+
+/* Show the spinning line on hover */
+.tech-card:hover::before {
+    opacity: 1;
+}
+
+/* 3. The Inner Mask (This creates the line thickness) */
+.tech-card::after {
+    content: "";
+    position: absolute;
+    inset: 2px; /* THIS is the thickness of your line! (2px) */
+    background-color: #0f172a; /* Must match the background-color in .tech-card */
+    border-radius: inherit; /* Perfectly matches your rounded-lg or rounded-full */
+    z-index: -1;
+}
+
+/* 4. Ensure your text and icons stay above the background */
+.tech-card-content, 
+.tech-card-animeted-bg {
+    position: relative;
+    z-index: 10;
+}
+
+/* Icon & Text Hover Animations */
+.tech-icon-wrapper {
+    transition: transform 0.3s ease-out;
+}
+
+.tech-card:hover .tech-icon-wrapper {
+    transform: scale(1.1) rotate(6deg);
+}
+
+.tech-text-wrapper {
+    transition: color 0.3s ease-in-out;
+}
+
+.tech-card:hover .tech-text-wrapper {
+    color: #a78bfa; /* Text turns soft purple on hover */
+}
+
+/* The Keyframes for the spinning effect */
+@keyframes spin-line {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
