@@ -4,11 +4,12 @@ Command: npx gltfjsx@6.5.3 computer-optimized.glb -T
 Files: computer-optimized.glb [486.38KB] > A:\Portfolio\my-project\public\models\computer-optimized-transformed.glb [39.72KB] (92%)
 */
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useGLTF } from '@react-three/drei'
+import { loadCachedModel } from '../../utils/modelCache.js'
 
-export function Computer(props) {
-  const { nodes, materials } = useGLTF('/models/computer-optimized-transformed.glb')
+function ComputerContent({ url, ...props }) {
+  const { nodes, materials } = useGLTF(url)
   return (
     <group {...props} dispose={null}>
       <group position={[-4.005, 67.549, 58.539]}>
@@ -19,4 +20,13 @@ export function Computer(props) {
   )
 }
 
-useGLTF.preload('/models/computer-optimized-transformed.glb')
+export function Computer(props) {
+  const [modelUrl, setModelUrl] = useState(null);
+
+  useEffect(() => {
+    loadCachedModel('/models/computer-optimized-transformed.glb').then(setModelUrl);
+  }, []);
+
+  if (!modelUrl) return null;
+  return <ComputerContent url={modelUrl} {...props} />
+}
