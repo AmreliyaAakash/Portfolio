@@ -10,8 +10,11 @@ import TechStack from './sections/TechStack.jsx'
 import Contact from './sections/Contact.jsx'
 import Footer from './sections/Footer.jsx'
 import ProjectsPage from './pages/ProjectsPage.jsx'
+import RectLoader from './components/RectLoader.jsx'
+import { loadCachedModel } from './utils/modelCache.js'
 
 const App = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState('home');
 
   useEffect(() => {
@@ -30,14 +33,41 @@ const App = () => {
     window.addEventListener('hashchange', handleHashChange);
     handleHashChange(); // Check on initial load
 
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    const minLoadingTime = new Promise(resolve => setTimeout(resolve, 4000));
+    const modelsToPreload = [
+      "/models/optimized-room.glb",
+      "/models/computer-optimized-transformed.glb",
+      "/models/react_logo-transformed.glb",
+      "/models/tailwindcss-logo.glb",
+      "/models/node-transformed.glb",
+      "/models/three.js-transformed.glb",
+      "/models/git-svg-transformed.glb"
+    ];
+
+    const preloadPromise = Promise.all(
+      modelsToPreload.map(url => loadCachedModel(url).catch((err) => console.warn(err)))
+    );
+
+    let isMounted = true;
+    Promise.all([minLoadingTime, preloadPromise]).then(() => {
+      if (isMounted) setIsLoading(false);
+    });
+
+    return () => {
+      isMounted = false;
+      window.removeEventListener('hashchange', handleHashChange);
+    };
   }, []);
+
+  if (isLoading) {
+    return <RectLoader />;
+  }
 
   return (
     <>
       <Toaster position="bottom-right" reverseOrder={false} />
       <Navbar />
-      
+
       {currentPage === 'home' ? (
         <>
           <Hero />
@@ -51,8 +81,8 @@ const App = () => {
       ) : (
         <ProjectsPage />
       )}
-      
-      <Footer/>
+
+      <Footer />
     </>
   )
 }
