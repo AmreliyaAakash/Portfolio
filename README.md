@@ -41,7 +41,7 @@ Modern and interactive personal portfolio built with **React, Tailwind CSS, and 
 
 * 🌐 **Portfolio**: [https://aakashamreliya.vercel.app/](https://aakashamreliya.vercel.app/)
 * 🐙 **GitHub**: [https://github.com/AmreliyaAakash](https://github.com/AmreliyaAakash)
-* 💼 **LinkedIn**: add-link
+* 💼 **LinkedIn**:(https://www.linkedin.com/in/aakash-amreliya-a903432b6/)
 * 📧 **Email**: add-email
 
 ---
