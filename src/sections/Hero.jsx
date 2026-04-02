@@ -66,7 +66,7 @@ const Hero = () => {
                     </div>
                 </header>
                 {/* Right side */}
-                 <figure>
+                 <figure className="w-full">
                     <div className='hero-3d-layout '>
                         <HeroExperience/>
                     </div>

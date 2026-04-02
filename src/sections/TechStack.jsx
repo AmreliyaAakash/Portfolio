@@ -6,7 +6,7 @@ import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 const TechStack = () => {
 
-    useGSAP(()=>{
+    useGSAP(() => {
         gsap.fromTo(".tech-card", {
             y: 50,
             opacity: 0,
@@ -16,10 +16,10 @@ const TechStack = () => {
             duration: 1,
             ease: "power2.inOut ",
             stagger: 0.2,
-             scrollTrigger: {
+            scrollTrigger: {
                 trigger: "#skills",
                 start: "top center",
-             }                     
+            }
         })
     })
 

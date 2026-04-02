@@ -34,8 +34,8 @@ const HeroContent = ({ ismobile }) => {
   return (
     <group
       ref={groupRef}
-      scale={ismobile ? 0.7 : 1}
-      position={[0, -3.5, 0]}
+      scale={ismobile ? 1.1 : 1}
+      position={[0, ismobile ? -2.0 : -3.5, 0]}
       rotation={[0, Math.PI / 4, 0]}
     >
       <Suspense fallback={null}>

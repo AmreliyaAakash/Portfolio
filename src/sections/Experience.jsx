@@ -120,7 +120,7 @@ const Experience = () => {
                       <div className="timeline" />
                       <div className="gradient-line w-1 h-full" />
                     </div>
-                    <div className="expText flex xl:gap-20 md:gap-10 gap-5 relative z-20">
+                    <div className="expText flex xl:gap-20 md:gap-10 gap-5 relative z-20 xl:ml-0 md:ml-32 ml-[4.5rem]">
                       <div className="timeline-logo-3d">
                         <img className="w-3/5 h-3/5 object-contain" src={card.logoPath} alt="logo" />
                       </div>

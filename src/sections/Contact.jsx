@@ -128,7 +128,7 @@ const Contact = () => {
                     </div>
 
                     {/* Right Box: 3D Canvas */}
-                    <div className="col-span-1 lg:col-span-3 bg-[#D48D4B] rounded-2xl overflow-hidden relative contact-animate h-[400px] lg:h-auto min-h-[500px]">
+                    <div className="col-span-1 lg:col-span-3 bg-[#D48D4B] rounded-2xl overflow-hidden relative contact-animate h-[350px] md:h-[500px] lg:h-auto lg:min-h-[500px]">
                         <Canvas shadows camera={{ position: [0, 3, 7], fov: 45 }}>
                             <ambientLight intensity={0.5} color="#fff436" />
                             <directionalLight position={[5, 5, 3]} intensity={2.5} color="#ffd8b3" />

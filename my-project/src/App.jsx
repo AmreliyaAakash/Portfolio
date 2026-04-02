@@ -45,12 +45,12 @@ const App = () => {
     ];
 
     const preloadPromise = Promise.all(
-       modelsToPreload.map(url => loadCachedModel(url).catch((err) => console.warn(err)))
+      modelsToPreload.map(url => loadCachedModel(url).catch((err) => console.warn(err)))
     );
 
     let isMounted = true;
     Promise.all([minLoadingTime, preloadPromise]).then(() => {
-       if (isMounted) setIsLoading(false);
+      if (isMounted) setIsLoading(false);
     });
 
     return () => {

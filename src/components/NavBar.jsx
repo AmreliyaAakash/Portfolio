@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import React from "react";  
+import React from "react";
 import { navLinks } from "../constants";
 
 const NavBar = () => {

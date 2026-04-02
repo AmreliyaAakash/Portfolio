@@ -81,11 +81,11 @@ section {
   }
 
   .hero-layout {
-    @apply relative z-10 xl:mt-20 mt-32 md:h-dvh h-[80vh] flex xl:items-center items-start justify-center;
+    @apply relative z-10 xl:mt-20 mt-32 md:min-h-dvh min-h-[90vh] flex xl:flex-row flex-col xl:items-center items-start justify-between;
   }
 
   .hero-text {
-    @apply flex flex-col justify-center md:text-[60px] text-[30px] font-semibold relative z-10 pointer-events-none;
+    @apply flex flex-col justify-center md:text-[60px] text-[35px] font-semibold relative z-20 pointer-events-none;
     img {
       @apply size-8 md:size-10 object-contain;
     }
@@ -99,7 +99,7 @@ section {
   }
 
   .hero-3d-layout {
-    @apply xl:w-[70%] w-full h-full min-h-[50vh] absolute xl:-top-20 top-24 xl:-right-20 right-0;
+    @apply xl:absolute relative xl:-top-20 top-10 xl:-right-20 right-0 xl:w-[70%] w-full xl:h-full h-[50vh] min-h-[40vh] z-0;
   }
 
   .navbar {

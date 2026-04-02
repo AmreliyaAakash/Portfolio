@@ -1,28 +1,38 @@
 import { get, set } from 'idb-keyval';
 
-export const loadCachedModel = async (url) => {
-    try {
-        // 1. Try to get from cache
-        const cachedBlob = await get(url);
-        if (cachedBlob) {
-            // console.log('Model loaded from IndexedDB cache');
-            return URL.createObjectURL(cachedBlob);
-        }
+// Global queue to ensure models load one by one sequentially
+let loadQueue = Promise.resolve();
 
-        // 2. If not in cache, fetch it
-        // console.log('Model not in cache, downloading...');
-        const response = await fetch(url);
-        if (!response.ok) throw new Error('Network response was not ok');
+export const loadCachedModel = (url) => {
+    return new Promise((resolve, reject) => {
+        // Enqueue the request
+        loadQueue = loadQueue.then(async () => {
+            try {
+                // 1. Try to get from cache
+                const cachedBlob = await get(url);
+                if (cachedBlob) {
+                    resolve(URL.createObjectURL(cachedBlob));
+                    return; // Done
+                }
 
-        const blob = await response.blob();
+                // 2. Fetch if not in cache (happens sequentially)
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('Network response was not ok');
 
-        // 3. Save to cache (don't await this, let it happen in background)
-        set(url, blob).catch((err) => console.warn('Failed to cache model', err));
+                const blob = await response.blob();
 
-        // 4. Return the blob URL
-        return URL.createObjectURL(blob);
-    } catch (error) {
-        console.warn('Error loading cached model, falling back to network', error);
-        return url; // Fallback to original URL
-    }
+                // 3. Save to cache
+                set(url, blob).catch((err) => console.warn('Failed to cache model', err));
+
+                // 4. Return the blob URL
+                resolve(URL.createObjectURL(blob));
+            } catch (error) {
+                console.warn('Error loading cached model, falling back to network', error);
+                resolve(url); // Fallback to original URL
+            }
+        }).catch(err => {
+            console.error('Error in model queue', err);
+            resolve(url); // Fallback
+        });
+    });
 };
